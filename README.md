@@ -28,6 +28,8 @@ An Obsidian theme that brings the feel of a native Mac app to your writing. Ever
 
 **Syntax highlighting from Xcode.** Code blocks use the exact color palette from Xcode's Default theme. Keywords, strings, types, and comments all match what you'd see in Apple's own developer tools — in both light and dark mode.
 
+<img src="screenshots/code-dark.gif" alt="Xcode syntax highlighting in dark mode" width="100%">
+
 > Under the hood: colors are extracted from Xcode's `.xccolortheme` definition files. Light mode uses the classic Xcode palette — magenta keywords (`#9B2393`), red strings (`#C41A16`), deep blue numbers (`#1C00CF`), teal types (`#3F6E74`). Dark mode uses the Default (Dark) palette — hot pink keywords (`#FC5FA3`), coral strings (`#FC6A5D`), gold numbers (`#D0BF69`), cyan types (`#5DD8FF`), lavender properties (`#D0A8FF`).
 
 **Thoughtful motion.** Buttons, sidebar items, and controls transition smoothly with timing curves modelled on macOS. Buttons gently compress when pressed. Nothing jumps or flickers.
