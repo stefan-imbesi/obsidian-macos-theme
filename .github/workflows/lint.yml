@@ -1,0 +1,58 @@
+name: Lint CSS
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint CSS
+        run: npx stylelint "theme.css"
+
+      - name: Validate manifest
+        run: |
+          node -e "
+            const m = require('./manifest.json');
+            const required = ['name', 'version', 'minAppVersion', 'author'];
+            const missing = required.filter(f => !m[f]);
+            if (missing.length) { console.error('Missing fields:', missing); process.exit(1); }
+            if (!/^\d+\.\d+\.\d+$/.test(m.version)) { console.error('Invalid semver:', m.version); process.exit(1); }
+            console.log('manifest.json valid:', m.name, m.version);
+          "
+
+      - name: Check for remote resources
+        run: |
+          if grep -P '(url\s*\(\s*["\x27]?https?://|@import\s+url\s*\(\s*["\x27]?https?://)' theme.css; then
+            echo "ERROR: Remote resources detected in theme.css"
+            exit 1
+          else
+            echo "No remote resources found"
+          fi
+
+      - name: Check for !important
+        run: |
+          # Count !important outside the prefers-reduced-motion block
+          # The only acceptable use is transition-duration/animation-duration in reduced-motion
+          count=$(grep -c '!important' theme.css || true)
+          allowed=$(grep '!important' theme.css | grep -c 'transition-duration\|animation-duration' || true)
+          if [ "$count" -ne "$allowed" ]; then
+            echo "ERROR: Found disallowed !important usage:"
+            grep -n '!important' theme.css | grep -v 'transition-duration\|animation-duration'
+            exit 1
+          else
+            echo "No disallowed !important usage ($allowed allowed in reduced-motion)"
+          fi

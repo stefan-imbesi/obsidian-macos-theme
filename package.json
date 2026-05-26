@@ -1,0 +1,12 @@
+{
+  "name": "obsidian-macos-theme",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "lint": "stylelint theme.css"
+  },
+  "devDependencies": {
+    "stylelint": "^16.0.0",
+    "stylelint-config-recommended": "^14.0.0"
+  }
+}
