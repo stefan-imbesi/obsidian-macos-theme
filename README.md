@@ -42,9 +42,16 @@ You don't need to configure anything. The theme reads your system preferences an
 
 ## Make it yours
 
-Install the [Style Settings](https://github.com/mgmeyers/obsidian-style-settings) plugin to customise the theme:
+The theme responds to Obsidian's built-in settings out of the box — no plugins needed:
 
-- **Accent color** — all eight macOS system colors, with separate light and dark mode options
+- **Light and dark mode** — follows your Obsidian appearance setting with full support for both
+- **Accent color** — the theme picks up whichever accent color you set in **Settings > Appearance**
+- **Translucent window** — enable in **Settings > Appearance** for real desktop blur behind sidebars
+- **Font settings** — your chosen text font, monospace font, and font size are all respected
+
+For deeper customisation, install the [Style Settings](https://github.com/mgmeyers/obsidian-style-settings) plugin to unlock additional options:
+
+- **Accent color override** — choose from all eight macOS system colors, with separate light and dark mode variants
 - **Translucent panels** — toggle the frosted-glass sidebar effect on or off
 - **Glass modals** — translucent or solid overlays
 - **Accent sidebar icons** — tint file explorer and ribbon icons with your accent color, like Finder
@@ -52,7 +59,7 @@ Install the [Style Settings](https://github.com/mgmeyers/obsidian-style-settings
 - **Full-width callouts** — stretch callouts to the edge of the editor
 - **Monospace font** — choose between SF Mono, Menlo, or Monaco
 
-Everything works out of the box with sensible defaults. Style Settings just gives you the dials.
+Everything works with sensible defaults. Style Settings just gives you the extra dials.
 
 > Under the hood: toggles use the `class-toggle` pattern via Style Settings YAML embedded in a CSS comment block. Each toggle adds a class to `body` (e.g. `body.macos-translucent-panels`), and all conditional styles are scoped to that class. This means the CSS is zero-cost when a feature is toggled off — no unused `backdrop-filter` or `background-image` being computed.
 
