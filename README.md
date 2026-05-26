@@ -2,9 +2,19 @@
 
 An Obsidian theme that brings the feel of a native Mac app to your writing. Every detail — from the translucent sidebars to the way buttons respond to your click — is drawn from Apple's own design language, so Obsidian sits right at home alongside Finder, Notes, and the rest of your Mac.
 
+<p>
+  <img src="screenshots/hero-light.png" alt="macOS Tahoe theme — light mode" width="49%">
+  <img src="screenshots/hero-dark.png" alt="macOS Tahoe theme — dark mode" width="49%">
+</p>
+
 ## What makes it different
 
 **It looks like it belongs on your Mac.** Sidebars use the same frosted-glass translucency you see across macOS Tahoe. Modals, menus, and the command palette all pick up the same treatment — subtle blur, soft edges, and layered depth that feels native rather than bolted on.
+
+<p>
+  <img src="screenshots/command-palette-light.png" alt="Command palette with glass blur — light mode" width="49%">
+  <img src="screenshots/command-palette-dark.png" alt="Command palette with glass blur — dark mode" width="49%">
+</p>
 
 > Under the hood: panels use `backdrop-filter: blur(30px) saturate(180%)` with semi-transparent `rgba()` backgrounds. A subtle SVG noise texture and top-edge specular gradient are layered via CSS `background-image` to simulate frosted glass grain and light refraction — no pseudo-elements that could break layout. When Obsidian's "Translucent window" mode is enabled, panel opacity drops further so the real desktop blur shows through.
 
